@@ -1,7 +1,8 @@
 import { expect, it } from 'vitest'
 
 import { data } from '../src/data'
-import { getStats } from '../src/solution'
+// import { getStats } from '../src/solution'
+import { getStats } from '../src/exercise'
 
 it('data', () => {
   expect(

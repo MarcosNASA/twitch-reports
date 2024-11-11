@@ -1,4 +1,4 @@
 import { data } from './data'
-import { getStats } from './solution'
+import { getStats } from './exercise'
 
 getStats(data)
