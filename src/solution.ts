@@ -11,7 +11,7 @@ const groupBy = <ItemType extends object>(array: ItemType[], key: (item: ItemTyp
     {} as { [key in PropertyKey]: ItemType[] }
   );
 
-const modWhoTimedoutMoreTimes = (data: Afordin) => {
+const modWhoTimedoutMoreTime = (data: Afordin) => {
   const timeoutsByMod = groupBy(data.timeouts, (timeout) => timeout.modId);
   const totalTimeoutByMod = Object.entries(timeoutsByMod).map(([modId, timeouts]) => {
     return {
@@ -21,11 +21,11 @@ const modWhoTimedoutMoreTimes = (data: Afordin) => {
   });
   const modsById = groupBy(data.mods, (mod) => mod.id);
   const sortedTimeoutsByMod = totalTimeoutByMod.toSorted((a, b) => b.timeout - a.timeout);
-  const [modWhoTimedoutMoreTimes] = sortedTimeoutsByMod
-  return modsById[modWhoTimedoutMoreTimes.id].at(0)?.name
+  const [modWhoTimedoutMoreTime] = sortedTimeoutsByMod
+  return modsById[modWhoTimedoutMoreTime.id].at(0)?.name
 }
 
-const modWhoTimedoutLessTimes = (data: Afordin) => {
+const modWhoTimedoutLessTime = (data: Afordin) => {
   const timeoutsByMod = groupBy(data.timeouts, (timeout) => timeout.modId);
   const totalTimeoutByMod = Object.entries(timeoutsByMod).map(([modId, timeouts]) => {
     return {
@@ -35,8 +35,8 @@ const modWhoTimedoutLessTimes = (data: Afordin) => {
   });
   const modsById = groupBy(data.mods, (mod) => mod.id);
   const sortedTimeoutsByMod = totalTimeoutByMod.toSorted((a, b) => a.timeout - b.timeout);
-  const [modWhoTimedoutLessTimes] = sortedTimeoutsByMod
-  return modsById[modWhoTimedoutLessTimes.id].at(0)?.name
+  const [modWhoTimedoutLessTime] = sortedTimeoutsByMod
+  return modsById[modWhoTimedoutLessTime.id].at(0)?.name
 }
 
 const modWhoTimedoutMoreOften = (data: Afordin) => {
@@ -87,14 +87,28 @@ export const getStats = (data: Afordin) => {
       totalDuration: data.streams.reduce((totalDuration, stream) => totalDuration + stream.duration, 0),
     },
 
-    viewers: {
-    },
     
     moderation: {
-      modWhoTimedoutMoreTimes: modWhoTimedoutMoreTimes(data),
-      modWhoTimedoutLessTimes: modWhoTimedoutLessTimes(data),
+      modWhoTimedoutMoreTime: modWhoTimedoutMoreTime(data),
+      modWhoTimedoutLessTime: modWhoTimedoutLessTime(data),
       modWhoTimedoutMoreOften: modWhoTimedoutMoreOften(data),
       modWhoTimedoutLessOften: modWhoTimedoutLessOften(data),
+    },
+
+    viewers: {
+      age: {
+        youngerThan20: data.viewers.filter(viewer => viewer.age < 20).length,
+        inTheir20s: data.viewers.filter(viewer => viewer.age < 20 && viewer.age >= 20).length,
+        inTheir30s: data.viewers.filter(viewer => viewer.age < 30 && viewer.age >= 20).length,
+        inTheir40s: data.viewers.filter(viewer => viewer.age < 40 && viewer.age >= 30).length,
+        olderThan40: data.viewers.filter(viewer => viewer.age >= 40).length,
+        oldest: data.viewers.toSorted((a, b) => b.age - a.age).at(0),
+        youngest: data.viewers.toSorted((a, b) => a.age - b.age).at(0),
+      },
+      followage: {
+        oldest: data.viewers.toSorted((a, b) => a.followedAt >= b.followedAt ? 1 : -1).at(0),
+        youngest: data.viewers.toSorted((a, b) => a.followedAt >= b.followedAt ? -1 : 1).at(0),
+      }
     },
   }
 } 
