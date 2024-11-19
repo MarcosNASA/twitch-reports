@@ -21,6 +21,24 @@ const keyBy = <ItemType extends object>(
     return groupedBy
   }, {} as { [key in PropertyKey]: ItemType })
 
+const clipper = (data: Afordin) => {
+  const clipsByViewer = groupBy(data.clips, (clip) => clip.followerId)
+  const viewersById = keyBy(data.viewers, (viewer) => viewer.id)
+  const totalClipsByViewer = Object.entries(clipsByViewer).map(
+    ([viewerId, clips]) => {
+      return {
+        viewer: viewersById[viewerId],
+        totalClips: clips.length,
+      }
+    },
+  )
+  const viewerWithMostClips = totalClipsByViewer
+    .toSorted((a, b) => b.totalClips - a.totalClips)
+    .at(0)
+  if (!viewerWithMostClips) return null
+  return viewerWithMostClips.viewer
+}
+
 const modWhoTimedoutMoreTime = (data: Afordin) => {
   const timeoutsByMod = groupBy(data.timeouts, (timeout) => timeout.modId)
   const totalTimeoutByMod = Object.entries(timeoutsByMod).map(
@@ -223,6 +241,9 @@ export const getStats = (data: Afordin) => {
         youngest: data.viewers
           .toSorted((a, b) => (a.followedAt >= b.followedAt ? -1 : 1))
           .at(0),
+      },
+      clips: {
+        clipper: clipper(data),
       },
     },
 

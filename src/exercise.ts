@@ -55,6 +55,10 @@ export const getStats = (data: Afordin) => {
         // Viewer who has followed for the shortest time
         youngest: '',
       },
+      clips: {
+        // Viewer who made the most clips
+        clipper: {},
+      },
     },
 
     moderation: {

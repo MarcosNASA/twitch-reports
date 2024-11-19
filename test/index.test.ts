@@ -92,6 +92,18 @@ it('data', () => {
           type: 'subscriber',
         },
       },
+      clips: {
+        clipper: {
+          age: 25,
+          country: 'Colombia',
+          followedAt: '2024-06-10',
+          id: 7,
+          name: 'girlazo',
+          sentMessages: 599,
+          subscribedAt: null,
+          type: 'follower',
+        },
+      },
     },
     moderation: {
       modWhoTimedoutMoreTime: 'aitor',
@@ -118,7 +130,7 @@ it('data', () => {
           country: 'Honduras',
           followedAt: '2023-05-16',
           id: 54,
-          name: 'blackbrittany',
+          name: 'jopa',
           sentMessages: 970,
           subscribedAt: '2024-04-09',
           type: 'subscriber',
