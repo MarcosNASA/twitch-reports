@@ -1,15 +1,11 @@
 import { expect, it } from 'vitest'
 
 import { data } from '../src/data'
-// import { getStats } from '../src/solution'
-import { getStats } from '../src/exercise'
+import { getStats } from '../src/solution'
+// import { getStats } from '../src/exercise'
 
 it('data', () => {
-  expect(
-    getStats(
-      data,
-    ),
-  ).toStrictEqual({
+  expect(getStats(data)).toStrictEqual({
     statistics: {
       viewers: 80,
       tags: 15,
@@ -46,60 +42,221 @@ it('data', () => {
       totalLikes: 51992,
       totalViews: 2539,
     },
+    viewers: {
+      age: {
+        youngerThan20: 3,
+        inTheir20s: 0,
+        inTheir30s: 24,
+        inTheir40s: 23,
+        olderThan40: 30,
+        oldest: {
+          age: 50,
+          country: 'Costa Rica',
+          followedAt: '2022-12-06',
+          id: 19,
+          name: 'rafa',
+          sentMessages: 601,
+          subscribedAt: null,
+          type: 'follower',
+        },
+        youngest: {
+          age: 18,
+          country: 'Honduras',
+          followedAt: '2024-08-03',
+          id: 44,
+          name: 'stephenmack',
+          sentMessages: 484,
+          subscribedAt: '2024-08-08',
+          type: 'subscriber',
+        },
+      },
+      followage: {
+        oldest: {
+          age: 26,
+          country: 'Argentina',
+          followedAt: '2022-11-16',
+          id: 46,
+          name: 'gmarsh',
+          sentMessages: 853,
+          subscribedAt: null,
+          type: 'follower',
+        },
+        youngest: {
+          age: 31,
+          country: 'Costa Rica',
+          followedAt: '2024-10-24',
+          id: 70,
+          name: 'dana35',
+          sentMessages: 515,
+          subscribedAt: '2024-05-17',
+          type: 'subscriber',
+        },
+      },
+    },
     moderation: {
       modWhoTimedoutMoreTime: 'aitor',
       modWhoTimedoutLessTime: 'jp',
       modWhoTimedoutMoreOften: 'jp',
       modWhoTimedoutLessOften: 'jp',
-    },
-    "viewers": {
-      "age": {
-        "youngerThan20": 3,
-        "inTheir20s": 0,
-        "inTheir30s": 24,
-        "inTheir40s": 23,
-        "olderThan40": 30,
-        "oldest": {
-          "age": 50,
-          "country": "Costa Rica",
-          "followedAt": "2022-12-06",
-          "id": 19,
-          "name": "rafa",
-          "sentMessages": 601,
-          "subscribedAt": null,
-          "type": "follower",
-        },
-        "youngest": {
-          "age": 18,
-          "country": "Honduras",
-          "followedAt": "2024-08-03",
-          "id": 44,
-          "name": "stephenmack",
-          "sentMessages": 484,
-          "subscribedAt": "2024-08-08",
-          "type": "subscriber",
+      mostTimedoutViewer: {
+        timeouts: [],
+        viewer: {
+          age: 49,
+          country: 'Chile',
+          followedAt: '2023-01-19',
+          id: 4,
+          name: 'hardy',
+          sentMessages: 408,
+          subscribedAt: '2024-07-19',
+          type: 'subscriber',
         },
       },
-      "followage": {
-        "oldest": {
-          "age": 26,
-          "country": "Argentina",
-          "followedAt": "2022-11-16",
-          "id": 46,
-          "name": "gmarsh",
-          "sentMessages": 853,
-          "subscribedAt": null,
-          "type": "follower",
+      longestTimedoutViewer: {
+        timeoutDuration: 7405,
+        viewer: {
+          age: 44,
+          country: 'Honduras',
+          followedAt: '2023-05-16',
+          id: 54,
+          name: 'blackbrittany',
+          sentMessages: 970,
+          subscribedAt: '2024-04-09',
+          type: 'subscriber',
         },
-        "youngest": {
-          "age": 31,
-          "country": "Costa Rica",
-          "followedAt": "2024-10-24",
-          "id": 70,
-          "name": "dana35",
-          "sentMessages": 515,
-          "subscribedAt": "2024-05-17",
-          "type": "subscriber",
+      },
+      mostHatedViewerByMods: {
+        aitor: {
+          age: 28,
+          country: 'Honduras',
+          followedAt: '2023-12-06',
+          id: 17,
+          name: 'unai',
+          sentMessages: 265,
+          subscribedAt: null,
+          timeouts: [
+            {
+              followerId: 17,
+              id: 32,
+              modId: 3,
+              streamId: 7,
+              time: 820,
+            },
+          ],
+          type: 'follower',
+        },
+        covi: {
+          age: 25,
+          country: 'Costa Rica',
+          followedAt: '2023-10-14',
+          id: 2,
+          name: 'xq',
+          sentMessages: 346,
+          subscribedAt: '2024-05-20',
+          timeouts: [
+            {
+              followerId: 2,
+              id: 30,
+              modId: 5,
+              streamId: 37,
+              time: 1656,
+            },
+          ],
+          type: 'subscriber',
+        },
+        designjuan: {
+          age: 42,
+          country: 'Honduras',
+          followedAt: '2023-11-30',
+          id: 3,
+          name: 'nicole',
+          sentMessages: 420,
+          subscribedAt: '2024-01-22',
+          timeouts: [
+            {
+              followerId: 3,
+              id: 11,
+              modId: 4,
+              streamId: 114,
+              time: 1063,
+            },
+          ],
+          type: 'subscriber',
+        },
+        jp: {
+          age: 25,
+          country: 'Colombia',
+          followedAt: '2024-06-10',
+          id: 7,
+          name: 'girlazo',
+          sentMessages: 599,
+          subscribedAt: null,
+          timeouts: [
+            {
+              followerId: 7,
+              id: 23,
+              modId: 1,
+              streamId: 127,
+              time: 1503,
+            },
+          ],
+          type: 'follower',
+        },
+        pheralb: {
+          age: 48,
+          country: 'Guatemala',
+          followedAt: '2024-09-23',
+          id: 1,
+          name: 'jarrison',
+          sentMessages: 30,
+          subscribedAt: null,
+          timeouts: [
+            {
+              followerId: 1,
+              id: 24,
+              modId: 2,
+              streamId: 153,
+              time: 709,
+            },
+          ],
+          type: 'follower',
+        },
+        scirga: {
+          age: 25,
+          country: 'Costa Rica',
+          followedAt: '2023-10-14',
+          id: 2,
+          name: 'xq',
+          sentMessages: 346,
+          subscribedAt: '2024-05-20',
+          timeouts: [
+            {
+              followerId: 2,
+              id: 30,
+              modId: 5,
+              streamId: 37,
+              time: 1656,
+            },
+          ],
+          type: 'subscriber',
+        },
+        waligno: {
+          age: 25,
+          country: 'Costa Rica',
+          followedAt: '2023-10-14',
+          id: 2,
+          name: 'xq',
+          sentMessages: 346,
+          subscribedAt: '2024-05-20',
+          timeouts: [
+            {
+              followerId: 2,
+              id: 30,
+              modId: 5,
+              streamId: 37,
+              time: 1656,
+            },
+          ],
+          type: 'subscriber',
         },
       },
     },

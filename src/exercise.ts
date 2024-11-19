@@ -1,4 +1,4 @@
-import { Afordin } from "./types";
+import { Afordin } from './types'
 
 export const getStats = (data: Afordin) => {
   return {
@@ -20,7 +20,7 @@ export const getStats = (data: Afordin) => {
       // List of unique countries
       uniqueCountries: [],
     },
-    
+
     streams: {
       // Total number of views
       totalViews: 0,
@@ -45,27 +45,33 @@ export const getStats = (data: Afordin) => {
         // Number of viewers who are older than 40
         olderThan40: 0,
         // Oldest viewer
-        oldest: "",
+        oldest: '',
         // Youngest viewer
-        youngest: "",
+        youngest: '',
       },
       followage: {
         // Viewer who has followed for the longest time
-        oldest: "",
+        oldest: '',
         // Viewer who has followed for the shortest time
-        youngest: "",
-      }
+        youngest: '',
+      },
     },
-    
+
     moderation: {
       // Name of the mod who timed out uses for the longer period of time
-      modWhoTimedoutMoreTime: "",
+      modWhoTimedoutMoreTime: '',
       // Name of the mod who timed out uses for the shorter period of time
-      modWhoTimedoutLessTime: "",
+      modWhoTimedoutLessTime: '',
       // Name of the mod who made more timeouts (regardless of the time)
-      modWhoTimedoutMoreOften: "",
+      modWhoTimedoutMoreOften: '',
       // Name of the mod who made less timeouts (regardless of the time)
-      modWhoTimedoutLessOften: "",
+      modWhoTimedoutLessOften: '',
+      // Viewer who was timed out more times (regardless of the time)
+      mostTimedoutViewer: '',
+      // Viewer who was timed out for the longer times
+      longestTimedoutViewer: '',
+      // For each mod name, the viewer they timed out the most
+      mostHatedViewerByMods: {},
     },
   }
-} 
+}
